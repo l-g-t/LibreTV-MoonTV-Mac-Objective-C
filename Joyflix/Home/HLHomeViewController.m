@@ -877,8 +877,8 @@ typedef enum : NSUInteger {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         builtInSites = @[
+            @{@"name": @"可可影视", @"url": @"https://kkys20.com/"},
             @{@"name": @"蛋蛋兔", @"url": @"https://www.dandantu.cc/"},
-            @{@"name": @"可可影视", @"url": @"https://www.keke1.app/"},
             @{@"name": @"北觅影视", @"url": @"https://v.luttt.com/"},
             @{@"name": @"奈飞工厂", @"url": @"https://yanetflix.com/"},
             @{@"name": @"GoFlim", @"url": @"http://113.44.5.201/index"},
