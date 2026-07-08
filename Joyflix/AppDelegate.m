@@ -98,7 +98,7 @@
 }
 
 - (void)checkForUpdatesWithURL:(NSString *)urlString retryLevel:(NSInteger)retryLevel isManualCheck:(BOOL)isManualCheck {
-    NSString *currentVersion = @"1.5.3";
+    NSString *currentVersion = @"1.5.4";
     NSURL *url = [NSURL URLWithString:urlString];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -406,15 +406,15 @@
 
     // 1. 创建并添加"内置影视"为一级主菜单
     NSMenu *builtInMenu = [[NSMenu alloc] initWithTitle:@"内置影视"];
-    NSArray *siteTitles = @[@"可可影视", @"蛋蛋兔", @"北觅影视", @"奈飞工厂",@"GoFlim",@"skura动漫",@"omofun动漫",@"GAZE",@"爱迪影视",@"GYING",@"CCTV",@"直播",@"短剧"];
-    NSArray *siteUrls = @[@"https://kkys20.com/", @"https://www.dandantu.cc/", @"https://v.luttt.com/",@"https://yanetflix.com/",@"http://113.44.5.201/index",@"https://skr.skr2.cc:666/",@"https://www.omofun2.xyz/",@"https://gaze.run/",@"https://adys.tv/",@"https://www.gying.si",@"https://tv.cctv.com/live/",@"https://live.wxhbts.com/",@"https://www.jinlidj.com/"];
+    NSArray *siteTitles = @[@"可可影视", @"北觅影视", @"skura动漫",@"omofun动漫",@"GAZE",@"爱迪影视",@"GYING",@"CCTV",@"直播"];
+    NSArray *siteUrls = @[@"https://www.kkys20.com/", @"https://v.luttt.com/",@"https://skr.skr2.cc:666/",@"https://omofun.in/",@"https://gaze.red/",@"https://adys.tv/",@"https://www.gying.si",@"https://tv.cctv.com/live/",@"https://live.wxhbts.com/"];
     for (NSInteger i = 0; i < siteTitles.count; i++) {
         NSMenuItem *siteItem = [[NSMenuItem alloc] initWithTitle:siteTitles[i] action:@selector(openBuiltInSite:) keyEquivalent:@""];
         siteItem.target = self;
         siteItem.representedObject = siteUrls[i];
         [builtInMenu addItem:siteItem];
-        // 在短剧下方插入分隔线
-        if ([siteTitles[i] isEqualToString:@"短剧"]) {
+        // 在直播下方插入分隔线
+        if ([siteTitles[i] isEqualToString:@"直播"]) {
             NSMenuItem *separator = [NSMenuItem separatorItem];
             [builtInMenu addItem:separator];
 
@@ -1346,9 +1346,8 @@
     NSTimeInterval fastestTime = MAXFLOAT;
 
     for (HLMonitoredWebsite *website in websites) {
-        // 排除CCTV、短剧和直播站点
+        // 排除CCTV和直播站点
         if ([website.name isEqualToString:@"CCTV"] ||
-            [website.name isEqualToString:@"短剧"] ||
             [website.name isEqualToString:@"直播"]) {
             continue;
         }

@@ -229,9 +229,8 @@
 
         if (!name.length || !url.length) continue;
 
-        // 排除CCTV、短剧和直播站点
+        // 排除CCTV和直播站点
         if ([name isEqualToString:@"CCTV"] ||
-            [name isEqualToString:@"短剧"] ||
             [name isEqualToString:@"直播"]) {
             NSLog(@"跳过%@站点监控: %@ - %@", name, name, url);
             continue;
@@ -283,9 +282,8 @@
 }
 
 - (void)syncAllSites {
-    // 清理已存在的CCTV、短剧和直播监控数据
+    // 清理已存在的CCTV和直播监控数据
     [self removeWebsiteWithName:@"CCTV"];
-    [self removeWebsiteWithName:@"短剧"];
     [self removeWebsiteWithName:@"直播"];
 
     [self syncBuiltInSites];

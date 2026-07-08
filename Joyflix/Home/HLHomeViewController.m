@@ -702,16 +702,9 @@ typedef enum : NSUInteger {
     NSURL *url = [NSURL URLWithString:urlString];
     if (!url) return;
 
-    // 根据URL动态设置User-Agent
-    if ([urlString containsString:@"dandantu"]) {
-        // 包含dandantu的网址使用iOS Safari UA
-        self.webView.customUserAgent = IOSSafariUserAgent;
-        NSLog(@"使用iOS Safari User-Agent: %@", IOSSafariUserAgent);
-    } else {
-        // 其他网址使用原有的Chrome UA
-        self.webView.customUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
-        NSLog(@"使用Chrome User-Agent");
-    }
+    // 使用原有的Chrome UA
+    self.webView.customUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+    NSLog(@"使用Chrome User-Agent");
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
@@ -877,19 +870,15 @@ typedef enum : NSUInteger {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         builtInSites = @[
-            @{@"name": @"可可影视", @"url": @"https://kkys20.com/"},
-            @{@"name": @"蛋蛋兔", @"url": @"https://www.dandantu.cc/"},
+            @{@"name": @"可可影视", @"url": @"https://www.kkys20.com/"},
             @{@"name": @"北觅影视", @"url": @"https://v.luttt.com/"},
-            @{@"name": @"奈飞工厂", @"url": @"https://yanetflix.com/"},
-            @{@"name": @"GoFlim", @"url": @"http://113.44.5.201/index"},
             @{@"name": @"skura动漫", @"url": @"https://skr.skr2.cc:666/"},
-            @{@"name": @"omofun动漫", @"url": @"https://www.omofun2.xyz/"},
-            @{@"name": @"GAZE", @"url": @"https://gaze.run/"},
+            @{@"name": @"omofun动漫", @"url": @"https://omofun.in/"},
+            @{@"name": @"GAZE", @"url": @"https://gaze.red/"},
             @{@"name": @"爱迪影视", @"url": @"https://adys.tv/"},
             @{@"name": @"GYING", @"url": @"https://www.gying.si"},
             @{@"name": @"CCTV", @"url": @"https://tv.cctv.com/live/"},
-            @{@"name": @"直播", @"url": @"https://live.wxhbts.com/"},
-            @{@"name": @"短剧", @"url": @"https://www.jinlidj.com/"}
+            @{@"name": @"直播", @"url": @"https://live.wxhbts.com/"}
         ];
     });
     return builtInSites;
